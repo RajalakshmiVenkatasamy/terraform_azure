@@ -11,7 +11,7 @@ variable "location" {
 }
 variable "storage_account_name" {
   type    = string
-  default = "mytfstorageacct123"
+  default = "mytfstorageacct98765"
 }
 
 variable "container_name" {
