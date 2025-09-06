@@ -13,3 +13,9 @@ variable "storage_account_name" {
   type    = string
   default = "mytfstorageacct123"
 }
+
+variable "container_name" {
+  description = "Name of the Storage Container"
+  type        = string
+  default     = "tfstatecontainer"
+}
