@@ -24,9 +24,9 @@ resource "azurerm_app_service_plan" "asp" {
   kind     = "App"      
   reserved = false      
 
-  sku {
-    tier = "Basic"     
-    size = "B1"
+ sku {
+    tier = "Free"       
+    size = "F1"
   }
 
   tags = {
