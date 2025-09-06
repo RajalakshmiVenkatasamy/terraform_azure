@@ -15,19 +15,13 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-# App Service Plan with tags
-resource "azurerm_app_service_plan" "asp" {
-  name                = "my-app-service-plan"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-
-  kind     = "App"      
-  reserved = false      
-
- sku {
-    tier = "Free"       
-    size = "F1"
-  }
+# Create Storage Account
+resource "azurerm_storage_account" "sa" {
+  name                     = var.storage_account_name
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
 
   tags = {
     Environment = "Dev"
@@ -35,6 +29,12 @@ resource "azurerm_app_service_plan" "asp" {
   }
 }
 
+# Create Storage Container
+resource "azurerm_storage_container" "container" {
+  name                  = var.container_name
+  storage_account_name  = azurerm_storage_account.sa.name
+  container_access_type = "private"
+}
 
 
 
